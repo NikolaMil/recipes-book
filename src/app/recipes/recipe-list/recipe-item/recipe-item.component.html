@@ -1,0 +1,64 @@
+<a
+  style="cursor: pointer;"
+  [routerLink]="['/recipe-detail', index]"
+  (click)="onSelect(recipe)"
+  routerLinkActive="active"
+  class="list-group-item clearfix">
+  <div class="pull-left">
+    <h1 class="list-group-item-heading">{{ recipe.name }}</h1>
+    <p class="list-group-item-text"><strong>Preparation instructions: </strong>{{ recipe.description | truncate : 50 : true }}</p>
+    <p class="list-group-item-text"><strong>Source: </strong>{{ recipe.source }}</p>
+    <p class="list-group-item-text"><strong>Ingredients: </strong>
+      <span 
+        *ngFor="let ingredient of recipe.ingredients | slice:0:3; let isLast=last">
+        {{ ingredient.name }}({{ ingredient.amount }}){{ isLast ? '' : ', '}}
+      </span>
+    </p>
+  </div>
+  <span class="pull-right">
+        <img
+          [src]="recipe.imagePath"
+          alt="{{ recipe.name }}"
+          class="img-responsive"
+          style="max-height: 70px;">
+      </span>
+</a>
+
+<!--<table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Source</th>
+        <th>Preparation Instructions</th>
+        <th>Preparation Time</th>
+        <th>Image</th>
+        <th>Ingredients</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr [attr.id]=rowId  *ngFor="let r of recipe;let rowId=index">
+        <td>{{ recipe.id }}</td>
+        <td>{{ recipe.name }}</td>
+        <td>{{ recipe.source }}</td>
+        <td>{{ recipe.description | truncate : 50 : true }}</td>
+        <td>{{ recipe.prepTimeHours }}:{{ recipe.prepTimeMinutes }}</td>
+        <td>
+          <img
+          [src]="recipe.imagePath"
+          alt="{{ recipe.name }}"
+          class="img-responsive"
+          style="max-height: 50px;">
+        </td>
+        <td *ngFor="let ingredient of recipe.ingredients ">{{ ingredient.name }}({{ ingredient.amount }}), </td>
+        <td><button 
+              class="btn btn-warning">
+              style="cursor: pointer;"
+              [routerLink]="['/recipe-detail', index]"
+              (click)="onSelect(recipe)"
+              
+              Details</button></td>
+      </tr>
+   </tbody>
+  </table>
+-->  
